@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaProduto.Data.Context;
+using SistemaProduto.Data.Repository;
+using SistemaProduto.Data.Repository.Interface;
+using SistemaProduto.Service.Service;
+using SistemaProduto.Service.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DbContexto>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
 
 var app = builder.Build();
 

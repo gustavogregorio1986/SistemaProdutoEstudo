@@ -1,0 +1,83 @@
+﻿@model SistemaProduto.Models.ProdutoView
+@{
+    ViewData["Title"] = "Cadastrar Produto";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NomeProduto, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.NomeProduto, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NomeProduto)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Preco, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Preco, new { @class = "form-control", @id = "preco" })
+                @Html.ValidationMessageFor(model => model.Preco)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantidade, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control", @id = "quantidade" })
+                @Html.ValidationMessageFor(model => model.Quantidade)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Total</label>
+            <div class="col-md-10">
+                <input type="text" id="total" class="form-control" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Status, "Status", htmlAttributes: new { @class = "form-label" })
+
+                @Html.DropDownListFor(model => model.Status,
+                         new List<SelectListItem>
+            {
+            new SelectListItem { Text = "Selecione ativo", Value = "" },
+            new SelectListItem { Text = "Ativo", Value = "1" },
+            new SelectListItem { Text = "Inativo", Value = "0" }
+            },
+                         htmlAttributes: new { @class = "form-select" })
+
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr/>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        function calcularTotal() {
+            var preco = parseFloat($("#preco").val()) || 0;
+            var quantidade = parseInt($("#quantidade").val()) || 0;
+            var total = preco * quantidade;
+            $("#total").val(total.toFixed(2));
+        }
+
+        $(document).ready(function () {
+            $("#preco, #quantidade").on("input", calcularTotal);
+        });
+    </script>
+}
