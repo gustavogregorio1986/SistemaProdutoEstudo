@@ -28,7 +28,7 @@
                         @((produto.Preco / 100).ToString("F2", new System.Globalization.CultureInfo("pt-BR")))
                     </td>
 
-                    <td>@produto.Quantidade.ToString("F2")</td>
+                    <td>@produto.Quantidade</td>
                     <td>@((produto.Preco * produto.Quantidade) / 100)</td>
                     <td>@produto.Status</td>
                 </tr>
