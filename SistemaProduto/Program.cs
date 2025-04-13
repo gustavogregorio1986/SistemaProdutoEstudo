@@ -4,6 +4,7 @@ using SistemaProduto.Data.Repository;
 using SistemaProduto.Data.Repository.Interface;
 using SistemaProduto.Service.Service;
 using SistemaProduto.Service.Service.Interface;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 

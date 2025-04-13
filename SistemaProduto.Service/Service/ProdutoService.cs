@@ -20,7 +20,6 @@ namespace SistemaProduto.Service.Service
 
         public void Adicionar(Produto produto)
         {
-            produto.TotalProdutos = produto.Preco * produto.Quantidade;
             _produtoRepository.Adicionar(produto);
         }
     }

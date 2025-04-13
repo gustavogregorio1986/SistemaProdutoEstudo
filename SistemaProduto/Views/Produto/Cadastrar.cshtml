@@ -3,6 +3,13 @@
     ViewData["Title"] = "Cadastrar Produto";
 }
 
+@if (TempData["Mensagem"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensagem"]
+    </div>
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -13,7 +20,7 @@
             @Html.LabelFor(model => model.NomeProduto, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.NomeProduto, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.NomeProduto)
+                @Html.ValidationMessageFor(model => model.NomeProduto, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -21,7 +28,7 @@
             @Html.LabelFor(model => model.Preco, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Preco, new { @class = "form-control", @id = "preco" })
-                @Html.ValidationMessageFor(model => model.Preco)
+                @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -29,7 +36,7 @@
             @Html.LabelFor(model => model.Quantidade, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control", @id = "quantidade" })
-                @Html.ValidationMessageFor(model => model.Quantidade)
+                @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
             </div>
         </div>
 

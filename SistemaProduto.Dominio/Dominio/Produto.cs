@@ -13,7 +13,7 @@ namespace SistemaProduto.Dominio.Dominio
 
         public string? NomeProduto { get; set; }
 
-        public double Preco { get; set; }
+        public decimal Preco { get; set; }
 
         public int Quantidade { get; set; }
 
