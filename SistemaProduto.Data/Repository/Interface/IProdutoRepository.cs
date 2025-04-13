@@ -10,5 +10,7 @@ namespace SistemaProduto.Data.Repository.Interface
     public interface IProdutoRepository
     {
         void Adicionar(Produto produto);
+
+        List<Produto> ListarProdutos(int paginaAtual, int itemPorPagina, out int totalItens);
     }
 }

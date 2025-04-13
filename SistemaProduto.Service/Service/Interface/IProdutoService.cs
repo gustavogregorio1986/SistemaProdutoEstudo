@@ -10,5 +10,7 @@ namespace SistemaProduto.Service.Service.Interface
     public interface IProdutoService
     {
         void Adicionar(Produto produto);
+
+        List<Produto> ListarProdutos(int paginaAtual, int itensPorPagina, out int totalItens);
     }
 }

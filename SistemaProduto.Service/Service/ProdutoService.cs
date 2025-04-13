@@ -22,5 +22,10 @@ namespace SistemaProduto.Service.Service
         {
             _produtoRepository.Adicionar(produto);
         }
+
+        public List<Produto> ListarProdutos(int paginaAtual, int itensPorPagina, out int totalItens)
+        {
+            return _produtoRepository.ListarProdutos(paginaAtual, itensPorPagina, out totalItens);
+        }
     }
 }

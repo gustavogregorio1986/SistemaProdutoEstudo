@@ -23,5 +23,16 @@ namespace SistemaProduto.Data.Repository
             _db.Add(produto);
             _db.SaveChanges();
         }
+
+        public List<Produto> ListarProdutos(int paginaAtual, int itemPorPagina, out int totalItens)
+        {
+            totalItens = _db.Produtos.Count();
+
+            return _db.Produtos
+                .OrderBy(p => p.Id)
+                .Skip((paginaAtual - 1) * itemPorPagina)
+                .Take(itemPorPagina)
+                .ToList();
+        }
     }
 }
