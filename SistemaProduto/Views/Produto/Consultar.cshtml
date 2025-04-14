@@ -10,7 +10,10 @@
 
 @if(Model.Produtos.Any())
 {
-  <table class="table table-sm">
+   <div class="mb-3">
+        <input type="text" id="buscaTabela" class="form-control" placeholder="Buscar...">
+    </div>
+  <table class="table table-sm" id="tabelaProdutos">
     <thead>
         <tr>
             <th scope="col">Nome do Produto</th>
@@ -110,11 +113,11 @@
 
         </ul>
     </nav>
-    @section Scripts {
+     @section Scripts{
     <script>
         document.getElementById("buscaTabela").addEventListener("keyup", function () {
             const termo = this.value.toLowerCase();
-            const linhas = document.querySelectorAll("#tabelaAvioes tbody tr");
+            const linhas = document.querySelectorAll("#tabelaProdutos tbody tr");
 
             linhas.forEach(linha => {
                 const textoLinha = linha.innerText.toLowerCase();
@@ -123,7 +126,7 @@
         });
     </script>
 
-    }
+    } 
 }
 else
 {
