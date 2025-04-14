@@ -18,5 +18,6 @@ namespace SistemaProduto.Service.Service.Interface
         List<Produto> ListarInativos(int paginaAtual, int itemPorPagina, int inativo, out int totalItens);
 
         void AlterarStatus(Guid id);
+
     }
 }

@@ -20,5 +20,6 @@ namespace SistemaProduto.Data.Repository.Interface
         Produto ObterPorId(Guid id);
 
         void Atualizar(Produto produto);
+
     }
 }
