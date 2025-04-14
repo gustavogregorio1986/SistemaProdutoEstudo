@@ -5,6 +5,9 @@
     ViewData["Title"] = "Consultar Produto";
 }
 
+<h2 class="text-center">Consulta de Produto</h2>
+<p class="text-muted">Exibindo @Model.Produtos.Count de @Model.TotalItens registros</p>
+
 @if(Model.Produtos.Any())
 {
   <table class="table table-sm">
