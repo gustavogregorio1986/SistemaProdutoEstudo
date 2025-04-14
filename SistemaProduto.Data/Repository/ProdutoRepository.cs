@@ -24,6 +24,12 @@ namespace SistemaProduto.Data.Repository
             _db.SaveChanges();
         }
 
+        public void Atualizar(Produto produto)
+        {
+            _db.Produtos.Update(produto);
+            _db.SaveChanges();
+        }
+
         public List<Produto> ListarAtivos(int paginaAtual, int itemPorPagina, int ativo, out int totalItens)
         {
             var query = _db.Produtos.Where(p => p.Status == 1);
@@ -59,6 +65,11 @@ namespace SistemaProduto.Data.Repository
                 .Skip((paginaAtual - 1) * itemPorPagina)
                 .Take(itemPorPagina)
                 .ToList();
+        }
+
+        public Produto ObterPorId(Guid id)
+        {
+            return _db.Produtos.FirstOrDefault(p => p.Id == id);
         }
     }
 }

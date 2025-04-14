@@ -23,6 +23,18 @@ namespace SistemaProduto.Service.Service
             _produtoRepository.Adicionar(produto);
         }
 
+        public void AlterarStatus(Guid id)
+        {
+            var produto = _produtoRepository.ObterPorId(id);
+
+            if (produto == null)
+                throw new Exception("Produto não encontrado!");
+
+            produto.AlterarSytatus();
+
+            _produtoRepository.Atualizar(produto);
+        }
+
         public List<Produto> ListarAtivos(int paginaAtual, int itemPorPagina, int ativo, out int totalItens)
         {
             return _produtoRepository.ListarAtivos(paginaAtual, itemPorPagina, ativo, out totalItens);

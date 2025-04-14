@@ -52,7 +52,12 @@ namespace SistemaProduto.Controllers
             return View(produtoView);
         }
 
-
+        [HttpPost]
+        public IActionResult AlternarStatus(Guid id)
+        {
+            _produtoService.AlterarStatus(id);
+            return RedirectToAction("Consultar");
+        }
 
         public IActionResult Consultar(int paginaAtual = 1, int itensPorPagina = 5)
         {

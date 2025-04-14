@@ -43,6 +43,15 @@
                             <span class="badge bg-danger">Inativo</span>
                         }
                     </td>
+                    <td>
+                        <form asp-action="AlternarStatus" method="post">
+                            <input type="hidden" name="id" value="@produto.Id" />
+                            <button type="submit" class="btn btn-sm @(produto.Status == 1 ? "btn-danger" : "btn-success")"
+                                    onclick="return confirm('Tem certeza que deseja @(produto.Status == 1 ? "desativar" : "ativar") este avião?');">
+                                @(produto.Status == 1 ? "Desativar" : "Ativar")
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             }
 
