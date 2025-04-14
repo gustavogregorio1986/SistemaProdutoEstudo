@@ -21,6 +21,6 @@ namespace SistemaProduto.Models
         public double TotalProdutos { get; set; }
 
         [Required(ErrorMessage = "Informe o status do produto")]
-        public string? Status { get; set; }
+        public int Status { get; set; }
     }
 }

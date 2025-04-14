@@ -70,14 +70,36 @@ namespace SistemaProduto.Controllers
             return View(viewModel);
         }
 
-        public IActionResult ListarAtivos()
+        public IActionResult ListarAtivos(int paginaAtual = 1, int ativo = 1, int itensPorPagina  = 5)
         {
-            return View();
+            var produtos = _produtoService.ListarAtivos(paginaAtual, itensPorPagina, ativo, out int total);
+
+            var viewModel = new IndexView
+            { 
+                 Produtos = produtos,
+                 TotalItens = total,
+                 PaginaAtual = paginaAtual,
+                 ItensPorPagina = itensPorPagina
+            };
+
+
+            return View(viewModel);
         }
 
-        public IActionResult ListarInativos()
+        public IActionResult ListarInativos(int paginaAtual = 1, int inativo = 0, int itensPorPagina = 5)
         {
-            return View();
+            var produtos = _produtoService.ListarAtivos(paginaAtual, itensPorPagina, inativo, out int total);
+
+            var viewModel = new IndexView
+            {
+                Produtos = produtos,
+                TotalItens = total,
+                PaginaAtual = paginaAtual,
+                ItensPorPagina = itensPorPagina
+            };
+
+
+            return View(viewModel);
         }
     }
 }

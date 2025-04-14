@@ -12,8 +12,8 @@ using SistemaProduto.Data.Context;
 namespace SistemaProduto.Data.Migrations
 {
     [DbContext(typeof(DbContexto))]
-    [Migration("20250411180437_CriarTables")]
-    partial class CriarTables
+    [Migration("20250414124916_CriarProdutos")]
+    partial class CriarProdutos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,14 +33,14 @@ namespace SistemaProduto.Data.Migrations
                     b.Property<string>("NomeProduto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Preco")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<double>("TotalProdutos")
                         .HasColumnType("float");

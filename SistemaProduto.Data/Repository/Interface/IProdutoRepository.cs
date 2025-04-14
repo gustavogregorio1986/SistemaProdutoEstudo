@@ -12,5 +12,9 @@ namespace SistemaProduto.Data.Repository.Interface
         void Adicionar(Produto produto);
 
         List<Produto> ListarProdutos(int paginaAtual, int itemPorPagina, out int totalItens);
+
+        List<Produto> ListarAtivos(int paginaAtual, int itemPorPagina, int ativo, out int totalItens);
+
+        List<Produto> ListarInativos(int paginaAtual, int itemPorPagina, int inativo, out int totalItens);
     }
 }

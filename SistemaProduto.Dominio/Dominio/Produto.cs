@@ -19,6 +19,6 @@ namespace SistemaProduto.Dominio.Dominio
 
         public double TotalProdutos { get; set; }
 
-        public string? Status { get; set; }
+        public int Status { get; set; }
     }
 }

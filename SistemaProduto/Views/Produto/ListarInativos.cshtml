@@ -1,5 +1,122 @@
-﻿@{
+﻿@model IndexView
+@{
     ViewData["Title"] = "Listar Inativos de Produto";
 }
 
 <h2 class="text-center">Consulta da lista de Inativos de Produto</h2>
+<p class="text-muted">Exibindo @Model.Produtos.Count de @Model.TotalItens registros</p>
+
+@if (Model.Produtos.Any())
+{
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Nome do Produto</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Total de Produto</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produto in Model.Produtos)
+            {
+                <tr>
+                    <td>@produto.NomeProduto</td>
+
+                    <!-- Convertendo o preço para exibir como 32,32 -->
+                    <td>
+                        @((produto.Preco).ToString("F2", new System.Globalization.CultureInfo("pt-BR")))
+                    </td>
+
+                    <td>@produto.Quantidade</td>
+                    <td>@(produto.Preco * produto.Quantidade)</td>
+                    <td>
+                        @if (produto.Status == 1)
+                        {
+                            <span class="badge bg-danger">inativo</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">ativo</span>
+                        }
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <nav aria-label="Navegação de páginas">
+        <ul class="pagination justify-content-center">
+
+            <!-- Primeira Página -->
+            <li class="page-item @(Model.PaginaAtual == 1 ? "disabled" : "")">
+                <a class="page-link" asp-action="Consultar"
+                   asp-route-paginaAtual="1"
+                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                    « Primeira
+                </a>
+            </li>
+
+            <!-- Página Anterior -->
+            <li class="page-item @(Model.PaginaAtual == 1 ? "disabled" : "")">
+                <a class="page-link" asp-action="Consultar"
+                   asp-route-paginaAtual="@(Model.PaginaAtual - 1)"
+                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                    ‹ Anterior
+                </a>
+            </li>
+
+            <!-- Números de Página -->
+            @for (int i = 1; i <= Model.TotalPaginas; i++)
+            {
+                <li class="page-item @(i == Model.PaginaAtual ? "active" : "")">
+                    <a class="page-link" asp-action="Consultar"
+                       asp-route-paginaAtual="@i"
+                       asp-route-itensPorPagina="@Model.ItensPorPagina">
+                        @i
+                    </a>
+                </li>
+            }
+
+            <!-- Próxima Página -->
+            <li class="page-item @(Model.PaginaAtual == Model.TotalPaginas ? "disabled" : "")">
+                <a class="page-link" asp-action="Consultar"
+                   asp-route-paginaAtual="@(Model.PaginaAtual + 1)"
+                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                    Próxima ›
+                </a>
+            </li>
+
+            <!-- Última Página -->
+            <li class="page-item @(Model.PaginaAtual == Model.TotalPaginas ? "disabled" : "")">
+                <a class="page-link" asp-action="Consultar"
+                   asp-route-paginaAtual="@Model.TotalPaginas"
+                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                    Última »
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+    @section Scripts {
+    <script>
+        document.getElementById("buscaTabela").addEventListener("keyup", function () {
+            const termo = this.value.toLowerCase();
+            const linhas = document.querySelectorAll("#tabelaAvioes tbody tr");
+
+            linhas.forEach(linha => {
+                const textoLinha = linha.innerText.toLowerCase();
+                linha.style.display = textoLinha.includes(termo) ? "" : "none";
+            });
+        });
+    </script>
+
+    }
+}
+else
+{
+    <div class="alert alert-warning text-center" role="alert">
+        Nenhum dado encontrado na tabela.
+    </div>
+}

@@ -24,12 +24,38 @@ namespace SistemaProduto.Data.Repository
             _db.SaveChanges();
         }
 
+        public List<Produto> ListarAtivos(int paginaAtual, int itemPorPagina, int ativo, out int totalItens)
+        {
+            var query = _db.Produtos.Where(p => p.Status == 1);
+
+            totalItens = query.Count();
+
+            return query
+                .OrderBy(p => p.NomeProduto).
+                Skip((paginaAtual - 1) * itemPorPagina).
+                Take(itemPorPagina)
+                .ToList();
+        }
+
+        public List<Produto> ListarInativos(int paginaAtual, int itemPorPagina, int inativo, out int totalItens)
+        {
+            var query = _db.Produtos.Where(p => p.Status == 0);
+
+            totalItens = query.Count();
+
+            return query
+                .OrderBy(p => p.NomeProduto).
+                Skip((paginaAtual - 1) * itemPorPagina).
+                Take(itemPorPagina)
+                .ToList();
+        }
+
         public List<Produto> ListarProdutos(int paginaAtual, int itemPorPagina, out int totalItens)
         {
             totalItens = _db.Produtos.Count();
 
             return _db.Produtos
-                .OrderBy(p => p.Id)
+                .OrderBy(p => p.NomeProduto)
                 .Skip((paginaAtual - 1) * itemPorPagina)
                 .Take(itemPorPagina)
                 .ToList();

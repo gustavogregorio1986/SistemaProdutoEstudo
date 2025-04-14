@@ -23,6 +23,16 @@ namespace SistemaProduto.Service.Service
             _produtoRepository.Adicionar(produto);
         }
 
+        public List<Produto> ListarAtivos(int paginaAtual, int itemPorPagina, int ativo, out int totalItens)
+        {
+            return _produtoRepository.ListarAtivos(paginaAtual, itemPorPagina, ativo, out totalItens);
+        }
+
+        public List<Produto> ListarInativos(int paginaAtual, int itemPorPagina, int inativo, out int totalItens)
+        {
+            return _produtoRepository.ListarInativos(paginaAtual, itemPorPagina, inativo, out totalItens);
+        }
+
         public List<Produto> ListarProdutos(int paginaAtual, int itensPorPagina, out int totalItens)
         {
             return _produtoRepository.ListarProdutos(paginaAtual, itensPorPagina, out totalItens);
