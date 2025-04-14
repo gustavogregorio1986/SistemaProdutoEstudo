@@ -2,6 +2,7 @@
 using SistemaProduto.Dominio.Dominio;
 using SistemaProduto.Models;
 using SistemaProduto.Service.Service.Interface;
+using System.Globalization;
 
 namespace SistemaProduto.Controllers
 {
@@ -27,10 +28,11 @@ namespace SistemaProduto.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    produtoView.TotalProdutos = (double)(produtoView.Preco * produtoView.Quantidade) / 100;
                     Produto produto = new Produto
                     {
                         NomeProduto = produtoView.NomeProduto,
-                        Preco = produtoView.Preco,
+                        Preco = produtoView.Preco / 100,
                         Quantidade = produtoView.Quantidade,
                         TotalProdutos = produtoView.TotalProdutos,
                         Status = produtoView.Status

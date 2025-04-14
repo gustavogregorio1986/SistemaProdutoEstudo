@@ -25,11 +25,11 @@
 
                     <!-- Convertendo o preço para exibir como 32,32 -->
                     <td>
-                        @((produto.Preco / 100).ToString("F2", new System.Globalization.CultureInfo("pt-BR")))
+                        @((produto.Preco).ToString("F2", new System.Globalization.CultureInfo("pt-BR")))
                     </td>
 
                     <td>@produto.Quantidade</td>
-                    <td>@((produto.Preco * produto.Quantidade) / 100)</td>
+                    <td>@(produto.Preco * produto.Quantidade)</td>
                     <td>@produto.Status</td>
                 </tr>
             }
@@ -41,7 +41,7 @@
 
             <!-- Primeira Página -->
             <li class="page-item @(Model.PaginaAtual == 1 ? "disabled" : "")">
-                <a class="page-link" asp-action="Index"
+                <a class="page-link" asp-action="Consultar"
                    asp-route-paginaAtual="1"
                    asp-route-itensPorPagina="@Model.ItensPorPagina">
                     « Primeira
@@ -50,7 +50,7 @@
 
             <!-- Página Anterior -->
             <li class="page-item @(Model.PaginaAtual == 1 ? "disabled" : "")">
-                <a class="page-link" asp-action="Index"
+                <a class="page-link" asp-action="Consultar"
                    asp-route-paginaAtual="@(Model.PaginaAtual - 1)"
                    asp-route-itensPorPagina="@Model.ItensPorPagina">
                     ‹ Anterior
@@ -61,7 +61,7 @@
             @for (int i = 1; i <= Model.TotalPaginas; i++)
             {
                 <li class="page-item @(i == Model.PaginaAtual ? "active" : "")">
-                    <a class="page-link" asp-action="Index"
+                    <a class="page-link" asp-action="Consultar"
                        asp-route-paginaAtual="@i"
                        asp-route-itensPorPagina="@Model.ItensPorPagina">
                         @i
@@ -71,7 +71,7 @@
 
             <!-- Próxima Página -->
             <li class="page-item @(Model.PaginaAtual == Model.TotalPaginas ? "disabled" : "")">
-                <a class="page-link" asp-action="Index"
+                <a class="page-link" asp-action="Consultar"
                    asp-route-paginaAtual="@(Model.PaginaAtual + 1)"
                    asp-route-itensPorPagina="@Model.ItensPorPagina">
                     Próxima ›
@@ -80,7 +80,7 @@
 
             <!-- Última Página -->
             <li class="page-item @(Model.PaginaAtual == Model.TotalPaginas ? "disabled" : "")">
-                <a class="page-link" asp-action="Index"
+                <a class="page-link" asp-action="Consultar"
                    asp-route-paginaAtual="@Model.TotalPaginas"
                    asp-route-itensPorPagina="@Model.ItensPorPagina">
                     Última »
