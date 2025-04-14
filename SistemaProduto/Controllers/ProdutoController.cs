@@ -88,7 +88,7 @@ namespace SistemaProduto.Controllers
 
         public IActionResult ListarInativos(int paginaAtual = 1, int inativo = 0, int itensPorPagina = 5)
         {
-            var produtos = _produtoService.ListarAtivos(paginaAtual, itensPorPagina, inativo, out int total);
+            var produtos = _produtoService.ListarInativos(paginaAtual, itensPorPagina, inativo, out int total);
 
             var viewModel = new IndexView
             {

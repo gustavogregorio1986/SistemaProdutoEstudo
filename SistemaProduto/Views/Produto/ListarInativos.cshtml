@@ -32,13 +32,9 @@
                     <td>@produto.Quantidade</td>
                     <td>@(produto.Preco * produto.Quantidade)</td>
                     <td>
-                        @if (produto.Status == 1)
+                        @if (produto.Status == 0)
                         {
                             <span class="badge bg-danger">inativo</span>
-                        }
-                        else
-                        {
-                            <span class="badge bg-success">ativo</span>
                         }
                     </td>
                 </tr>
