@@ -75,6 +75,19 @@ namespace SistemaProduto.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        public IActionResult ExportarExcel(int paginaAtual = 1, int itensPorPagina = 100)
+        {
+            var resultado = _produtoService.ExportarProdutosParaExcel(paginaAtual, itensPorPagina);
+
+            return File(
+                resultado.Arquivo,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "produtos.xlsx"
+            );
+        }
+
+
         public IActionResult ListarAtivos(int paginaAtual = 1, int ativo = 1, int itensPorPagina  = 5)
         {
             var produtos = _produtoService.ListarAtivos(paginaAtual, itensPorPagina, ativo, out int total);

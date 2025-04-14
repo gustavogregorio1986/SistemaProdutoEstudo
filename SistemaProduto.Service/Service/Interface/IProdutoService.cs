@@ -1,4 +1,5 @@
-﻿using SistemaProduto.Dominio.Dominio;
+﻿using SistemaProduto.Data.DTO;
+using SistemaProduto.Dominio.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,6 @@ namespace SistemaProduto.Service.Service.Interface
 
         void AlterarStatus(Guid id);
 
+        ExportacaoExcelResultado ExportarProdutosParaExcel(int paginaAtual, int itensPorPagina);
     }
 }

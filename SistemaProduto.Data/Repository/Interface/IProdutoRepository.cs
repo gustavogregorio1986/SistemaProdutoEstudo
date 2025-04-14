@@ -21,5 +21,6 @@ namespace SistemaProduto.Data.Repository.Interface
 
         void Atualizar(Produto produto);
 
+
     }
 }
