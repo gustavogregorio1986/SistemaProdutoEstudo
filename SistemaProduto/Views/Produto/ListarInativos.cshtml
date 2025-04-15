@@ -50,7 +50,7 @@
 
             <!-- Primeira Página -->
             <li class="page-item @(Model.PaginaAtual == 1 ? "disabled" : "")">
-                <a class="page-link" asp-action="Consultar"
+                <a class="page-link" asp-action="ListarInativos"
                    asp-route-paginaAtual="1"
                    asp-route-itensPorPagina="@Model.ItensPorPagina">
                     « Primeira
@@ -59,7 +59,7 @@
 
             <!-- Página Anterior -->
             <li class="page-item @(Model.PaginaAtual == 1 ? "disabled" : "")">
-                <a class="page-link" asp-action="Consultar"
+                <a class="page-link" asp-action="ListarInativos"
                    asp-route-paginaAtual="@(Model.PaginaAtual - 1)"
                    asp-route-itensPorPagina="@Model.ItensPorPagina">
                     ‹ Anterior
@@ -70,7 +70,7 @@
             @for (int i = 1; i <= Model.TotalPaginas; i++)
             {
                 <li class="page-item @(i == Model.PaginaAtual ? "active" : "")">
-                    <a class="page-link" asp-action="Consultar"
+                    <a class="page-link" asp-action="ListarInativos"
                        asp-route-paginaAtual="@i"
                        asp-route-itensPorPagina="@Model.ItensPorPagina">
                         @i
