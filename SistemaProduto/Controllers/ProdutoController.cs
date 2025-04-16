@@ -59,7 +59,7 @@ namespace SistemaProduto.Controllers
             return RedirectToAction("Consultar");
         }
 
-        public IActionResult Consultar(int paginaAtual = 1, int itensPorPagina = 5)
+        public IActionResult Consultar(int paginaAtual = 1, int itensPorPagina = 10)
         {
             var produtos = _produtoService.ListarProdutos(paginaAtual, itensPorPagina, out int total);
 
@@ -88,7 +88,7 @@ namespace SistemaProduto.Controllers
         }
 
 
-        public IActionResult ListarAtivos(int paginaAtual = 1, int ativo = 1, int itensPorPagina  = 5)
+        public IActionResult ListarAtivos(int paginaAtual = 1, int ativo = 1, int itensPorPagina  = 10)
         {
             var produtos = _produtoService.ListarAtivos(paginaAtual, itensPorPagina, ativo, out int total);
 
@@ -104,7 +104,7 @@ namespace SistemaProduto.Controllers
             return View(viewModel);
         }
 
-        public IActionResult ListarInativos(int paginaAtual = 1, int inativo = 0, int itensPorPagina = 5)
+        public IActionResult ListarInativos(int paginaAtual = 1, int inativo = 0, int itensPorPagina = 10)
         {
             var produtos = _produtoService.ListarInativos(paginaAtual, itensPorPagina, inativo, out int total);
 
