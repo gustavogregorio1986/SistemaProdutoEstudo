@@ -119,5 +119,21 @@ namespace SistemaProduto.Controllers
 
             return View(viewModel);
         }
+
+        public IActionResult ConsultarJSON(int paginaAtual = 1, int itensPorPagina = 100)
+        {
+            var produtos = _produtoService.ListarProdutos(paginaAtual, itensPorPagina, out int total);
+
+            var viewModel = new IndexView
+            {
+                Produtos = produtos,
+                TotalItens = total,
+                PaginaAtual = paginaAtual,
+                ItensPorPagina = itensPorPagina
+            };
+
+
+            return View(viewModel);
+        }
     }
 }

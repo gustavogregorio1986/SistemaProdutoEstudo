@@ -1,0 +1,9 @@
+﻿@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "Consultar JSON";
+}
+
+<pre>
+    @Html.Raw(JsonConvert.SerializeObject(Model, Formatting.Indented))
+</pre>
