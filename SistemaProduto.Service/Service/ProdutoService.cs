@@ -46,6 +46,9 @@ namespace SistemaProduto.Service.Service
             {
                 var worksheet = workbook.Worksheets.Add("Produtos");
 
+                decimal totalGeral = 0;
+
+                // Cabeçalhos
                 worksheet.Cell(1, 1).Value = "Nome do Produto";
                 worksheet.Cell(1, 2).Value = "Preço";
                 worksheet.Cell(1, 3).Value = "Quantidade";
@@ -53,15 +56,23 @@ namespace SistemaProduto.Service.Service
                 worksheet.Cell(1, 5).Value = "Status";
 
                 int linha = 2;
-                foreach(var produto in produtos)
+                foreach (var produto in produtos)
                 {
+                    var totalProduto = produto.Preco * produto.Quantidade;
+
                     worksheet.Cell(linha, 1).Value = produto.NomeProduto;
                     worksheet.Cell(linha, 2).Value = produto.Preco;
                     worksheet.Cell(linha, 3).Value = produto.Quantidade;
-                    worksheet.Cell(linha, 4).Value = produto.TotalProdutos;
-                    worksheet.Cell(linha, 5).Value = produto.Status == 1 ? "Ativo" : "Inativo"; ;
+                    worksheet.Cell(linha, 4).Value = totalProduto;
+                    worksheet.Cell(linha, 5).Value = produto.Status == 1 ? "Ativo" : "Inativo";
+                    totalGeral += totalProduto;
                     linha++;
                 }
+
+                // Total Geral na última linha
+                worksheet.Cell(linha + 1, 3).Value = "TOTAL GERAL:";
+                worksheet.Cell(linha + 1, 4).Value = totalGeral;
+                worksheet.Cell(linha + 1, 4).Style.NumberFormat.Format = "#,##0.00";
 
                 using (var stream = new MemoryStream())
                 {
