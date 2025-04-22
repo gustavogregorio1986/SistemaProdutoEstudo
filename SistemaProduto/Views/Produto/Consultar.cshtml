@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Consultar Produto";
+    decimal totalGeral = 0;
 }
 
 <h2 class="text-center">Consulta de Produto</h2>
@@ -26,6 +27,8 @@
     <tbody>
             @foreach (var produto in Model.Produtos)
             {
+                var totalProduto = produto.Preco * produto.Quantidade;
+                totalGeral += totalProduto;
                 <tr>
                     <td>@produto.NomeProduto</td>
 
@@ -36,6 +39,7 @@
 
                     <td>@produto.Quantidade</td>
                     <td>@(produto.Preco * produto.Quantidade)</td>
+                    <td>@totalProduto.ToString("C")</td>
                     <td>
                         @if(produto.Status == 1)
                         {
@@ -59,6 +63,12 @@
             }
 
       </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"><strong>Total Geral:</strong></td>
+                <td><strong>@totalGeral.ToString("C")</strong></td>
+            </tr>
+        </tfoot>
     </table>
     <nav aria-label="Navegação de páginas">
         <ul class="pagination justify-content-center">
